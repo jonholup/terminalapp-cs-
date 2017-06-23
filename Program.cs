@@ -6,28 +6,25 @@ namespace FitnessFrog
   {
       static void Main()
       {
-        int runningTotal = 0;
-        bool runFrog = true;
+        var runningTotal = 0.0;
 
-        while (runFrog)
+        while (true)
         {
             // Prompt user for minutes exercised 
             Console.Write("Enter how many minutes you exercised, or type \"quit\" to exit: ");
-            string newEntry = Console.ReadLine();
+            var newEntry = Console.ReadLine();
 
             // Repeat until user quits 
-            if (newEntry == "quit")
+            if (newEntry.ToLower() == "quit")
             {
-              runFrog = false;
+              break;
             } 
-            else
-            {
               try
               {
-                int newInt = int.Parse(newEntry);
+                var newInt = double.Parse(newEntry);
               if (newInt <= 0)
               {
-                Console.WriteLine(newInt + "is not an acceptable number.");
+                Console.WriteLine(newInt + " is not an acceptable number.");
                 continue;
               }
               else if (newInt <= 15)
@@ -52,7 +49,7 @@ namespace FitnessFrog
               }
 
               // Add minutes exercised to total 
-              runningTotal = runningTotal + newInt;
+              runningTotal += newInt;
 
               // Display total minutes exercised to the screen 
               Console.WriteLine("You've entered " + runningTotal + " minutes");
@@ -63,8 +60,6 @@ namespace FitnessFrog
               continue;
             }
               // Print feedback dependent on newInt
-
-            }
             
         } 
         Console.WriteLine("Goodbye");
