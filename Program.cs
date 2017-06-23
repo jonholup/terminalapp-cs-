@@ -22,12 +22,15 @@ namespace FitnessFrog
             } 
             else
             {
-              int newInt = int.Parse(newEntry);
-              // Add minutes exercised to total 
-              runningTotal = runningTotal + newInt;
-      
-              // Print feedback dependent on newInt
-              if (newInt <= 15)
+              try
+              {
+                int newInt = int.Parse(newEntry);
+              if (newInt <= 0)
+              {
+                Console.WriteLine(newInt + "is not an acceptable number.");
+                continue;
+              }
+              else if (newInt <= 15)
               {
                 Console.WriteLine("I like your style!");
               }
@@ -48,8 +51,18 @@ namespace FitnessFrog
                 Console.WriteLine("Does not compute");
               }
 
+              // Add minutes exercised to total 
+              runningTotal = runningTotal + newInt;
+
               // Display total minutes exercised to the screen 
               Console.WriteLine("You've entered " + runningTotal + " minutes");
+              }
+            catch (FormatException)
+            {
+              Console.WriteLine("That is not valid input.");
+              continue;
+            }
+              // Print feedback dependent on newInt
 
             }
             
